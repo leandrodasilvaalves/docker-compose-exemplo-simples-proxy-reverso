@@ -32,13 +32,13 @@ services:
       - proxynetwork
     depends_on:
       - api
-      
+
   api:
     image: node:alpine
     volumes:
       - ./api:/api
     working_dir: /api
-    command: node program.js
+    command: ash -c  "npm install && node program.js"
     networks:
       - proxynetwork
     
