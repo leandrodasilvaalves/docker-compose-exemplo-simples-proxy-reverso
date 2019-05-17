@@ -10,22 +10,30 @@ services:
       - ./nginx/proxy.html:/usr/share/nginx/html/index.html
     networks: 
       - proxynetwork
+    depends_on:
+      - api
+      - animais
+      - pessoas
 
-  teste1:
+  animais:
     image: nginx:alpine    
     volumes:
-      - ./nginx/teste1.html:/usr/share/nginx/html/index.html
+      - ./nginx/animais.html:/usr/share/nginx/html/index.html
     networks: 
       - proxynetwork
+    depends_on:
+      - api
 
-  teste2:
+  pessoas:
     image: nginx:alpine
     volumes:
-      - ./nginx/teste2.html:/usr/share/nginx/html/index.html
+      - ./nginx/pessoas.html:/usr/share/nginx/html/index.html
     networks: 
       - proxynetwork
-
-  testeapi:
+    depends_on:
+      - api
+      
+  api:
     image: node:alpine
     volumes:
       - ./api:/api
@@ -33,6 +41,7 @@ services:
     command: node program.js
     networks:
       - proxynetwork
+    
 
 networks: 
   proxynetwork:
