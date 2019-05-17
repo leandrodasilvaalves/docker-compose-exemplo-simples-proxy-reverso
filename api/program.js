@@ -2,7 +2,11 @@
 var express = require('express');
 var app = express();
 
-app.get('/', function (req, res) {
+app.get('/', (req, res)=>{
+  res.send({ message: "Api funcionando"});
+});
+
+app.get('/pessoas', function (req, res) {
   var pessoas = [{ nome: "João", idade: 10 }, { nome: "Maria", idade: 9 }, { nome: "Zezinho", idade: 8 }];
   res.send(pessoas);
 });
